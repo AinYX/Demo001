@@ -3,3 +3,7 @@ settings.py
 __init__.py
 db.sqlite3
 Demo001/__pycache__
+.DS_Store
+login/__pycache__/
+login/migrations/__pycache__/
+static/bootstrap-3.3.7-dist/.DS_Store
