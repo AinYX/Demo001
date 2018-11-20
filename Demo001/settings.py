@@ -47,9 +47,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login',
+	# django install app
     'captcha',
-    # 'djcelery',
+    'ckeditor',
+    'ckeditor_uploader',
+    'pygments',
+	# my app
+	'login',
+    'Blog',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +141,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CKEDITOR_UPLOAD_PATH = 'upload/'
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
@@ -145,23 +156,6 @@ EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
 CONFIRM_DAYS = 7
 
 
-# CELERY_BROKER_URL = 'redis://localhost'
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_RESULT_BACKEND = 'redis://localhost'
-# CELERY_TASK_SERIALIZER = 'json'
-
-
-# celery的配置
-# BROKER_URL = ' redis://127.0.0.1:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
-# CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
-# CELERY_TIMEZONE = 'Asia/Shanghai'
-
-# djcelery.setup_loader()
-#
-# BROKER_URL = 'redis://127.0.0.1:6379/0'
-#
-# CELERY_IMPORTS = ('tasks.task')
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = '956a58e7838774780fb170f2d2f5f041-c1fe131e-d05371b7'
+MAILGUN_SERVER_NAME = 'sandbox357847d1381f49609b9083ef9eee381d.mailgun.org'

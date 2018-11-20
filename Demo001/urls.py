@@ -11,20 +11,33 @@ Class-based views
     2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+    2. Add a URL to urlpatterns:  url(r'^Blog/', include('Blog.urls'))
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from login import views
+from login import views as login
+from Blog import views as blog
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
-    # url(r'^sayemail/', views.sayemail),
     url(r'^admin/', admin.site.urls),
-    url(r'^index/', views.index),
-    url(r'^login/', views.login),
-    url(r'^register/', views.register),
-    url(r'^logout/', views.logout),
+
+	# login
+    url(r'^login/', login.login),
+    url(r'^register/', login.register),
+    url(r'^logout/', login.logout),
+	url(r'^confirm/$', login.user_confirm),
+	# 验证码
     url(r'^captcha', include('captcha.urls')),
-    url(r'^confirm/$', views.user_confirm),
+	# 编辑器
+	url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+	# Blog
+	url(r'', include('Blog.urls', namespace='Blog', app_name='Blog')),
+
+	url(r'', blog.index ),
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

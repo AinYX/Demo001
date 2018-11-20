@@ -38,11 +38,6 @@ def send_email(email, code):
 	msg.send()
 
 
-def index(request):
-	pass
-	return render(request, 'login/index.html')
-
-
 def login(request):
 	if request.session.get('is_login', None):
 		redirect('/index/')
@@ -61,7 +56,7 @@ def login(request):
 					request.session['is_login'] = True
 					request.session['user_id'] = user.id
 					request.session['user_name'] = user.name
-					return redirect('/index/')
+					return redirect('/Blog/')
 				else:
 					message = "密码不正确！"
 			except:
@@ -113,10 +108,10 @@ def register(request):
 
 def logout(request):
 	if not request.session.get('is_login', None):
-		return redirect('/index/')
+		return redirect('/Blog/')
 	request.session.flush()
 
-	return redirect('/index/')
+	return redirect('/Blog/')
 
 
 def hash_code(s, salt='Demo001'):
@@ -149,7 +144,7 @@ def user_confirm(request):
 		confirm.user.has_confirmed = True
 		confirm.user.save()
 		confirm.delete()
-		message = '<font color="greenyellow">谢谢使用    请使用账号登陆</font>'
+		message = '<font color="greenyellow" >&nbsp;&nbsp;&nbsp;&nbsp;谢谢使用    请使用账号登陆</font>'
 
 		return render(request, 'login/confirm.html', locals())
 
