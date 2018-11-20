@@ -1,0 +1,30 @@
+<!-- header.html -->
+<nav class="navbar  fixed-top navbar-toggleable-md navbar-light" id="mainNav">
+
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/Blog/"><h1>听风留的博客</h1></a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/Blog/">主页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/Blog/about/">关于我</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/Blog/contact/">联系我</a>
+                    </li>
+	                  <li class="nav-item">
+                        {% if request.session.is_login %}
+													<a class="nav-link page-scroll" href="/logout/">注销</a>
+												{% else %}
+	                        <a class="nav-link page-scroll" href="/login/">登录</a>
+												{% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

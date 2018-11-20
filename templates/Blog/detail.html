@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+{% block title %}听风留的博客{% endblock %}
+{% block css %}
+	<link href="{% static 'blog-muban/blog_detail/css/style_css.css' %}" rel="stylesheet">
+	<link href="{% static 'blog-muban/blog_detail/css/prettify.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+{# 这是分页的设置#}
+{% load paginate_tags %}
+{% paginate article_list 3 %}
+
+<header>
+  <div class="container">
+    <h2 class="docs-header"> <br><br><br>一个学习Python与Django的博客</h2>
+  </div>
+</header>
+<!-- Main Content -->
+<section>
+  <div class="container">
+    <ul class="docs-nav" id="menu-left">
+      <li><strong>文章分类</strong></li>
+			{% for category in category_list %}
+				<li><a href="{% url 'Blog:category' category.pk %}" class=" ">{{ category }}</a></li>
+			{% endfor %}
+
+      <li class="separator"></li>
+      <li><strong>文章目录</strong></li>
+      {% for article in article_list %}
+      <li><a href="{{ article.get_absolute_url }}">{{ article.title | truncatewords:'3'}}</a></li>
+      {% endfor %}
+
+    </ul>
+
+    <div class="docs-content">
+	    {% for article in article_list %}
+		    <h3><a href="{{ article.get_absolute_url }}" class="post-title"> {{ article.title }}</a></h3>
+      <h4 >分类：{{ article.category }}</h4>
+      <p> {{ article.body | truncatewords:'24' | safe}}</p>
+
+      <h5>
+	      {% if article.likes <= 999 %}
+		      <span class="glyphicon glyphicon-eye-open"></span><font color="#333333">浏览量:</font>{{ article.views }}&nbsp;&nbsp;&nbsp;&nbsp;
+	      {% else %}
+		      <span class="glyphicon glyphicon-eye-open"></span><font color="#333333">浏览量:</font>999+&nbsp;&nbsp;&nbsp;&nbsp;
+	      {% endif %}
+
+	      {% if article.likes <= 999 %}
+		      <span class="glyphicon glyphicon-heart"></span><font color="#333333" >点赞数:</font>{{ article.likes }}&nbsp;&nbsp;&nbsp;&nbsp;
+	      {% else %}
+		      <span class="glyphicon glyphicon-heart"></span><font color="#333333" >点赞数:</font>999+&nbsp;&nbsp;&nbsp;&nbsp;
+	      {% endif %}
+	      <span class="glyphicon glyphicon-edit"></span><font color="#333333" >最后发布时间:</font>{{ article.last_modified_time |  date:"Y年n月d日" }}
+      </h5>
+		    <hr>
+		  {% empty %}
+		    <div class="no-post">暂时还没有发布的文章！</div>
+	    {% endfor %}
+			{% include 'Blog/pagination.html' %}
+
+    </div>
+</div>
+</section>
+<form>
+<input type="text" placeholder="测试表单" aria-describedby="sizing-addon1">
+</form>
+
+
+{% endblock %}

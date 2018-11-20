@@ -1,0 +1,54 @@
+{#templates/blog/pagination.html 页面面板#}
+<div class="container" >
+<div class="row">
+<div class="col-md-12 col-md-offset-6">
+<ul class="pagination">
+    {% if article_list.has_previous %}
+        <li><a class="previous-page" href="?page={{ article_list.previous_page_number }}">
+            <span class="icon-previous"></span>上一页
+        </a></li>
+    {% endif %}
+
+
+    {% if first_page == current_page %}
+        <li class="active"><span class="first-page current">1</span></li>
+    {% else %}
+        <li><a href="?page=1" class="first-page">1</a></li>
+    {% endif %}
+
+    {% if pages_first > 2 %}
+        <li><span>...</span></li>
+    {% endif %}
+
+    {% for page in pages %}
+        {% if page == current_page %}
+            <li class="active"><span class="current">{{ page }}</span></li>
+        {% else %}
+            <li ><a href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+
+    {% if pages_last < last_page %}
+        <li><span>...</span></li>
+    {% endif %}
+    
+
+    {% if last_page != 1 %}
+        {% if last_page == current_page %}
+            <li class="active"><span class="current">{{ last_page }}</span></li>
+        {% else %}
+            <li><a href="?page={{ last_page }}">{{ last_page }}</a></li>
+        {% endif %}
+    {% endif %}
+    
+
+    {% if article_list.has_next %}
+        <li><a class="next-page" href="?page={{ article_list.next_page_number }}">
+            下一页<span class="icon-next"></span>
+        </a></li>
+    {% endif %}
+</ul>
+</div>
+</div>
+</div>

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}关于我{% endblock %}
+{% block css %}
+	<link href="{% static 'blog-muban/blog_css/css/clean-blogcss.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+    <!-- Page Header -->
+    <header class="intro-header" style="background-image: url({% static 'blog-muban/blog_css/img/about-bg.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                    <div class="page-heading">
+                        <h1>About Me</h1>
+                        <span class="subheading">This is what I doing.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+	            {% for about in about_list %}
+	              <p>{{ about.body | safe }}</p>
+	            {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

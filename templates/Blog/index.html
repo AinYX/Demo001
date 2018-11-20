@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}主页{% endblock %}
+{% block css %}
+	<link href="{% static 'blog-muban/blog_css/css/clean-blogcss.css' %}" rel="stylesheet">
+{% endblock %}
+{% block login %}
+	{% if request.session.is_login %}
+		<a class="nav-link page-scroll" href="/logout/">注销</a>
+	{% else %}
+		<a class="nav-link page-scroll" href="/login/">登录</a>
+	{% endif %}
+{% endblock %}
+
+
+{% block content %}
+		<header class="intro-header" style="background-image: url('{% static "blog-muban/blog_css/img/home-bg.jpg" %}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                    <div class="site-heading">
+                        <h1>AinYQ Blog</h1>
+                        <span class="subheading">A Blog to Learn Python and Djnago.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+							{% for article in article_list %}
+
+                <div class="post-preview">
+                    <a href="{{ article.get_absolute_url }}">
+                        <h2 class="post-title">
+                            {{ article.title }}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{ article.body | truncatewords:'24'| safe }}
+                        </h3>
+                    </a>
+	                <h5>
+		                {% if article.likes <= 999 %}
+		                  <span class="glyphicon glyphicon-eye-open"></span><font color="#333333">浏览量:</font>{{ article.views }}&nbsp;&nbsp;&nbsp;&nbsp;
+		                {% else %}
+			                <span class="glyphicon glyphicon-eye-open"></span><font color="#333333">浏览量:</font>999+&nbsp;&nbsp;&nbsp;&nbsp;
+		                {% endif %}
+
+
+		                {% if article.likes <= 999 %}
+		                  <span class="glyphicon glyphicon-heart"></span><font color="#333333" >点赞数:</font>{{ article.likes }}&nbsp;&nbsp;&nbsp;&nbsp;
+		                {% else %}
+			                <span class="glyphicon glyphicon-heart"></span><font color="#333333" >点赞数:</font>999+&nbsp;&nbsp;&nbsp;&nbsp;
+		                {% endif %}
+		                <span class="glyphicon glyphicon-edit"></span><font color="#333333" >最后发布时间:</font>{{ article.last_modified_time |  date:"Y年n月d日" }}
+	                </h5>
+                </div>
+								<hr>
+							{% endfor %}
+
+
+                <!-- Pager -->
+                <div class="clearfix">
+                    <a class="btn btn-secondary float-right" href="/Blog/detail/">更多文章 &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
