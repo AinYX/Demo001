@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import djcelery
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,14 +27,8 @@ SECRET_KEY = 'qixrc)2$vl8$i7%#ztc69$$3w3mk-oqg!6gh+d=rk+_tex40qr'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*.127.0.0.1/',
-
+    '*',
     ]
-
-ALLOWED_HOSTS = [
-    '.127.0.0.1',  # Allow domain and subdomains
-    '.127.0.0.1.',  # Also allow FQDN and subdomains
-]
 
 
 # Application definition
@@ -52,9 +45,9 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'pygments',
-	# my app
-	'login',
-    'Blog',
+    # my app
+    'login',
+    'blog',
 ]
 
 MIDDLEWARE = [

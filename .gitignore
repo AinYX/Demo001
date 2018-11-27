@@ -1,5 +1,4 @@
 .idea
-settings.py
 __init__.py
 db.sqlite3
 Demo001/__pycache__
@@ -7,3 +6,6 @@ Demo001/__pycache__
 login/__pycache__/
 login/migrations/__pycache__/
 static/bootstrap-3.3.7-dist/.DS_Store
+Blog/__pycache__/
+Blog/migrations/__pycache__/
+Blog/templatetags/__pycache__/

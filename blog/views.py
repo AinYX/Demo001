@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.shortcuts import redirect
 
-from Blog.models import Article
-from Blog.models import Category
-from Blog.models import About
+from blog.models import Article
+from blog.models import Category
+from blog.models import About
 from .forms import BlogCommentForm
 
 from django.views.generic import ListView, DetailView

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from login import views as login
-from Blog import views as blog
+from blog import views as blog
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -34,7 +34,7 @@ urlpatterns = [
 	# 编辑器
 	url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 	# Blog
-	url(r'', include('Blog.urls', namespace='Blog', app_name='Blog')),
+	url(r'', include('blog.urls', namespace='Blog', app_name='Blog')),
 
 	url(r'', blog.index ),
 
