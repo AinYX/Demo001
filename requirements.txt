@@ -21,7 +21,7 @@ idna==2.7
 kiwisolver==1.0.1
 kombu==3.0.37
 lxml==4.2.5
-markdown2==2.3.6
+markdown2==2.4.0
 matplotlib==3.0.2
 numpy==1.15.4
 Pillow==5.2.0
